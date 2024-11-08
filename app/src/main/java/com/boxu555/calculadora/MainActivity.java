@@ -10,10 +10,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import com.udojava.evalex.Expression;
 
+
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
+
+    private TextView inputDisplay, outputDisplay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,13 +41,13 @@ public class MainActivity extends AppCompatActivity {
         Button button7 = findViewById(R.id.button7);
         Button button8 = findViewById(R.id.button8);
         Button button9 = findViewById(R.id.button9);
-        Button buttonMasMenos = findViewById(R.id.buttonMasMenos);
+        Button buttonMasMenos = findViewById(R.id.buttonOso);
         Button buttonPunto = findViewById(R.id.buttonPunto);
         Button buttonCalcular = findViewById(R.id.buttonCalcular);
         Button buttonMultiplicar = findViewById(R.id.buttonMultiplicar);
         Button buttonDividir = findViewById(R.id.buttonDividir);
         Button buttonSumar = findViewById(R.id.buttonSumar);
-        Button buttonPorcentaje = findViewById(R.id.buttonPorcentaje);
+        Button buttonRestar = findViewById(R.id.buttonRestar);
         Button buttonCE = findViewById(R.id.buttonCE);
         Button buttonC = findViewById(R.id.buttonC);
         Button buttonDelete = findViewById(R.id.buttonDelete);
@@ -58,19 +63,15 @@ public class MainActivity extends AppCompatActivity {
         buttons.add(button7);
         buttons.add(button8);
         buttons.add(button9);
-        buttons.add(buttonMasMenos);
         buttons.add(buttonPunto);
-        buttons.add(buttonCalcular);
         buttons.add(buttonMultiplicar);
         buttons.add(buttonDividir);
         buttons.add(buttonSumar);
-        buttons.add(buttonPorcentaje);
-        buttons.add(buttonCE);
-        buttons.add(buttonC);
-        buttons.add(buttonDelete);
+        buttons.add(buttonRestar);
+
 
         TextView pantalla = findViewById(R.id.pantalla);
-        pantalla.setText("0");
+        pantalla.setText("");
 
         for (Button button: buttons) {
             button.setOnClickListener(new View.OnClickListener() {
@@ -82,6 +83,119 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         }
+
+        buttonDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String delete = pantalla.getText().toString();
+                delete = delete.substring(0, delete.length()-1);
+                pantalla.setText(delete);
+            }
+        });
+
+        buttonC.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                pantalla.setText("");
+            }
+        });
+
+        buttonCE.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                pantalla.setText("");
+            }
+        });
+
+        buttonMultiplicar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String pantallaT = pantalla.getText().toString();
+
+                if (!pantallaT.isEmpty()) {
+                    if (!pantallaT.contains(" * ")) {
+                        pantalla.setText(pantallaT + " * ");
+                    }
+                }
+            }
+        });
+
+        buttonDividir.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String pantallaT = pantalla.getText().toString();
+
+                if (!pantallaT.isEmpty()) {
+                    if (!pantallaT.contains(" / ")) {
+                        pantalla.setText(pantallaT + " / ");
+                    }
+                }
+            }
+        });
+
+        buttonSumar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String pantallaT = pantalla.getText().toString();
+
+                if (!pantallaT.isEmpty()) {
+                    if (!pantallaT.contains(" + ")) {
+                        pantalla.setText(pantallaT + " + ");
+                    }
+                }
+            }
+        });
+
+        buttonRestar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String pantallaT = pantalla.getText().toString();
+
+                if (!pantallaT.isEmpty()) {
+                    if (!pantallaT.contains(" - ")) {
+                        pantalla.setText(pantallaT + " - ");
+                    }
+                }
+            }
+        });
+
+        buttonPunto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String pantallaT = pantalla.getText().toString();
+
+                if (!pantallaT.isEmpty()) {
+                    if (!pantallaT.contains(" . ")) {
+                        pantalla.setText(pantallaT + " . ");
+                    }
+                }
+            }
+        });
+
+        buttonCalcular.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String calculo = pantalla.getText().toString();
+
+                try {
+                    Expression expression = new Expression(calculo);
+                    double resltado = expression.eval().doubleValue();
+
+                    pantalla.setText(resltado+"");
+                } catch (Exception e) {
+                    pantalla.setText("Error");
+                }
+            }
+        });
+
+
+
+
+
+
+
+
+
 
 
 

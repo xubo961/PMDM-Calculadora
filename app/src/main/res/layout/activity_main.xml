@@ -28,12 +28,16 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/buttonPorcentaje"
+                android:id="@+id/buttonDelete"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_margin="1dp"
-                android:text="%" />
+                android:drawableLeft="@drawable/delete_icon"
+                android:paddingLeft="30dp"
+                />
+
+
 
             <Button
                 android:id="@+id/buttonCE"
@@ -52,14 +56,14 @@
                 android:text="C" />
 
             <Button
-                android:id="@+id/buttonDelete"
+                android:id="@+id/buttonRestar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_margin="1dp"
-                android:drawableLeft="@drawable/delete_icon"
-                android:paddingLeft="30dp"
-                />
+                android:text="-" />
+
+
         </LinearLayout>
 
         <LinearLayout
@@ -183,12 +187,12 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/buttonMasMenos"
+                android:id="@+id/buttonOso"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_margin="1dp"
-                android:text="+/-" />
+                android:text="ʕ•́ᴥ•̀ʔ" />
 
             <Button
                 android:id="@+id/button0"
